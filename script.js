@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dataString = JSON.stringify(payload);
 
         // CRUCIAL CHECK: Is user context available for sendData?
-        //if (tg.initDataUnsafe?.user?.id) {
+        if (tg.initDataUnsafe?.user?.id) {
             statusDiv.textContent = 'Attempting to send data to bot...';
             statusDiv.style.color = 'blue';
             submitBtn.disabled = true;
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusDiv.style.color = 'green';
                 // Note: The app might close before this message is visible for long.
                 // The primary confirmation should come from the bot in the chat.
-                tg.close();
+                // tg.close();
             } catch (e) {
                 console.error('Error calling tg.sendData:', e);
                 statusDiv.textContent = `Error during tg.sendData: ${e.message}`;
@@ -62,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(`CRITICAL ERROR: tg.sendData failed: ${e.message}`);
                 submitBtn.disabled = false;
             }
-        // } else {
-        //     statusDiv.textContent = 'Error: Critical - Telegram user context (user.id) not found in initDataUnsafe. Cannot send data.';
-        //     statusDiv.style.color = 'red';
-        //     console.error('Telegram user data or ID is missing from initDataUnsafe.', tg.initDataUnsafe);
-        //     alert('CRITICAL: Telegram user.id is missing from initDataUnsafe. Data NOT sent.');
-        //     submitBtn.disabled = false;
-        // }
+        } else {
+            statusDiv.textContent = 'Error: Critical - Telegram user context (user.id) not found in initDataUnsafe. Cannot send data.';
+            statusDiv.style.color = 'red';
+            console.error('Telegram user data or ID is missing from initDataUnsafe.', tg.initDataUnsafe);
+            alert('CRITICAL: Telegram user.id is missing from initDataUnsafe. Data NOT sent.');
+            submitBtn.disabled = false;
+        }
     }
     tg.expand();
 });
