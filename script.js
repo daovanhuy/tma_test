@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             statusDiv.textContent = 'Attempting to send data to bot...';
             statusDiv.style.color = 'blue';            
             console.log('Calling tg.sendData with:', dataString);
-            alert(`DEBUG: About to call tg.sendData(). User ID: ${tg.initDataUnsafe.user.id}. Data: ${dataString}`); // For explicit confirmation
+            //alert(`DEBUG: About to call tg.sendData(). User ID: ${tg.initDataUnsafe.user.id}. Data: ${dataString}`); // For explicit confirmation
 
             try {
                 tg.sendData(dataString);
