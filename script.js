@@ -40,8 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // CRUCIAL CHECK: Is user context available for sendData?
         if (tg.initDataUnsafe?.user?.id) {
             statusDiv.textContent = 'Attempting to send data to bot...';
-            statusDiv.style.color = 'blue';
-            submitBtn.disabled = true;
+            statusDiv.style.color = 'blue';            
             console.log('Calling tg.sendData with:', dataString);
             alert(`DEBUG: About to call tg.sendData(). User ID: ${tg.initDataUnsafe.user.id}. Data: ${dataString}`); // For explicit confirmation
 
@@ -57,15 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error calling tg.sendData:', e);
                 statusDiv.textContent = `Error during tg.sendData: ${e.message}`;
                 statusDiv.style.color = 'red';
-                alert(`CRITICAL ERROR: tg.sendData failed: ${e.message}`);
-                submitBtn.disabled = false;
+                alert(`CRITICAL ERROR: tg.sendData failed: ${e.message}`);                
             }
         } else {
             statusDiv.textContent = 'Error: Critical - Telegram user context (user.id) not found in initDataUnsafe. Cannot send data.';
             statusDiv.style.color = 'red';
             console.error('Telegram user data or ID is missing from initDataUnsafe.', tg.initDataUnsafe);
-            alert('CRITICAL: Telegram user.id is missing from initDataUnsafe. Data NOT sent.');
-            submitBtn.disabled = false;
+            alert('CRITICAL: Telegram user.id is missing from initDataUnsafe. Data NOT sent.');            
         }
     }
     tg.expand();
