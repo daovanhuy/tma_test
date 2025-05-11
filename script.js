@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // statusDiv.style.color = 'green';
                 // Note: The app might close before this message is visible for long.
                 // The primary confirmation should come from the bot in the chat.
+                tg.close();
             } catch (e) {
                 console.error('Error calling tg.sendData:', e);
                 statusDiv.textContent = `Error during tg.sendData: ${e.message}`;
