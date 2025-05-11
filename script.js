@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 tg.sendData(dataString);
                 // tg.sendData often closes the app. If you need to show a message *before* potential close:
-                // statusDiv.textContent = 'Data sent instruction issued. Waiting for bot confirmation.';
-                // statusDiv.style.color = 'green';
+                statusDiv.textContent = 'Data sent instruction issued. Waiting for bot confirmation.';
+                statusDiv.style.color = 'green';
                 // Note: The app might close before this message is visible for long.
                 // The primary confirmation should come from the bot in the chat.
                 tg.close();
