@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const input1 = document.getElementById('input1');
     const input2 = document.getElementById('input2');
-    const submitBtn = document.getElementById('submitBtn');
     const statusDiv = document.getElementById('status');
     const debugDiv = document.getElementById('debug');
 
@@ -19,8 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     debugDiv.innerHTML = initDataInfo;
     console.log("Telegram.WebApp.initDataUnsafe:", tg.initDataUnsafe);
     console.log("Telegram.WebApp.initData:", tg.initData); // This is the one to validate on server if needed
-
-    submitBtn.addEventListener('click', handleSubmit);
+    tg.MainButton.setText('Submit data').show().onClick(handleSubmit);
 
     function handleSubmit() {
         const data1 = input1.value.trim();
@@ -54,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusDiv.style.color = 'green';
                 // Note: The app might close before this message is visible for long.
                 // The primary confirmation should come from the bot in the chat.
-                // tg.close();
+                tg.close();
             } catch (e) {
                 console.error('Error calling tg.sendData:', e);
                 statusDiv.textContent = `Error during tg.sendData: ${e.message}`;
